@@ -1,12 +1,25 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour
+public class Score : MonoBehaviourPun, IPunObservable
 {
-    public static int score = 0;
+    public int score = 0;
     private Text _text;
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(score);
+        }
+        else
+        {
+            score = (int)stream.ReceiveNext();
+        }
+    }
 
     void Start()
     {
@@ -16,9 +29,6 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        if (GetComponentInParent<ScoreWriter>()._isWritingScore == true)
-        {
-            _text.text = score.ToString();
-        }
+       _text.text = score.ToString();
     }
 }

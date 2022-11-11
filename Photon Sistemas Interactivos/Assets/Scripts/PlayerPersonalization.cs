@@ -13,6 +13,11 @@ public class PlayerPersonalization : MonoBehaviourPunCallbacks
 
     [SerializeField] Color prueba;
 
+    private void Start()
+    {
+        gameObject.GetComponent<TMPro.TMP_Dropdown>().value = 0;
+    }
+
     public void SelectColor(int index)
     {
         Color color = colors[index];

@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab, playerOneCanva, playerTwoCanva;
     [SerializeField] Transform playerOnePosition, playerTwoPosition;
+
+    public static GameObject canvaClone;
     void Start()
     {
         if (playerPrefab == null)
@@ -27,7 +29,7 @@ public class GameController : MonoBehaviour
             GameObject _clone = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity, 0, initData);
             _clone.GetComponent<SpriteRenderer>().color = ToColor(PhotonNetwork.LocalPlayer.CustomProperties["color"].ToString());
 
-            //PhotonNetwork.Instantiate(spawnCanvaPoint.name, spawnCanvaPoint.transform.position, Quaternion.identity, 0, initData);
+            canvaClone = PhotonNetwork.Instantiate(spawnCanvaPoint.name, spawnCanvaPoint.transform.position, Quaternion.identity, 0, initData);
 
         }
     }
