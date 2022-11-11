@@ -24,10 +24,17 @@ public class GameController : MonoBehaviour
 
             initData[0] = "Data instanciacion";
 
-            PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity, 0, initData).gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            GameObject _clone = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity, 0, initData);
+            _clone.GetComponent<SpriteRenderer>().color = ToColor(PhotonNetwork.LocalPlayer.CustomProperties["color"].ToString());
 
-            PhotonNetwork.Instantiate(spawnCanvaPoint.name, spawnCanvaPoint.transform.position, Quaternion.identity, 0, initData);
+            //PhotonNetwork.Instantiate(spawnCanvaPoint.name, spawnCanvaPoint.transform.position, Quaternion.identity, 0, initData);
+
         }
+    }
+
+    public Color ToColor(string color)
+    {
+        return (Color)typeof(Color).GetProperty(color.ToLowerInvariant()).GetValue(null, null);
     }
 
 }

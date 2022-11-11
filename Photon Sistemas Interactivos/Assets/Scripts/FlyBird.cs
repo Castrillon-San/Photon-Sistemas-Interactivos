@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class FlyBird : MonoBehaviourPun, IPunInstantiateMagicCallback
+public class FlyBird : MonoBehaviourPunCallbacks
 {
     GameManager gameManager;
     public float velocity = 1;
@@ -14,6 +15,18 @@ public class FlyBird : MonoBehaviourPun, IPunInstantiateMagicCallback
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        ColorEvents.Instance.SetCustomColor(PhotonNetwork.LocalPlayer.CustomProperties["color"].ToString(), photonView.ViewID);
+
+        //if (photonView.IsMine)
+        //{
+        //    gameObject.GetComponent<SpriteRenderer>().color = PhotonNetwork.LocalPlayer.CustomProperties[]
+        //}
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log("ADFADSFASFASDFASDFASDFSADGSAGASDGASDFASDFADSASDFADSFSADFASDFASDFASDFFFA");
     }
 
     void Update()
@@ -41,9 +54,4 @@ public class FlyBird : MonoBehaviourPun, IPunInstantiateMagicCallback
         gameManager.GameOver();
     }
 
-    public void OnPhotonInstantiate(PhotonMessageInfo info)
-    {
-        Debug.Log(info.Sender.NickName + "Se ha iniciado");
-        Debug.Log((string)info.photonView.InstantiationData[0]);
-    }
 }

@@ -1313,9 +1313,9 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Blue
       m_Image: {fileID: 0}
-    - m_Text: Violet
+    - m_Text: White
       m_Image: {fileID: 0}
-    - m_Text: Pink
+    - m_Text: Magenta
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1390,6 +1390,8 @@ MonoBehaviour:
   - {r: 0.33490568, g: 0.67537045, b: 1, a: 0}
   - {r: 0.75848186, g: 0.4292453, b: 1, a: 0}
   - {r: 1, g: 0.4575472, b: 0.96450955, a: 0}
+  prefabCustom: {fileID: 531214508382399540, guid: d6011d0c4b7b2964ab6c48350334c14e, type: 3}
+  prueba: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1216672789
 GameObject:
   m_ObjectHideFlags: 0

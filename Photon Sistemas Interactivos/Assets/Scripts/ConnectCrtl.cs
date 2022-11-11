@@ -78,16 +78,16 @@ public class ConnectCrtl : MonoBehaviourPunCallbacks
         PanelRoom.SetActive(true);
     }
 
-    public void SetColor(int index)
-    {
-        string color = GameObject.Find("DropdownColors").GetComponent<Dropdown>().options[index].text;
+    //public void SetColor(int index)
+    //{
+    //    string color = GameObject.Find("DropdownColors").GetComponent<Dropdown>().options[index].text;
 
-        Debug.Log("Color: " + color);
+    //    Debug.Log("Color: " + color);
 
-        var propsToSet = new ExitGames.Client.Photon.Hashtable() { { "color", color } };
-        PhotonNetwork.LocalPlayer.SetCustomProperties(propsToSet);
+    //    var propsToSet = new ExitGames.Client.Photon.Hashtable() { { "color", color } };
+    //    PhotonNetwork.LocalPlayer.SetCustomProperties(propsToSet);
 
-    }
+    //}
 
     public void SetReady()
     {
@@ -124,11 +124,11 @@ public class ConnectCrtl : MonoBehaviourPunCallbacks
         //Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         //SetButton(false, "WAITING PLAYERS");
         PhotonNetwork.LoadLevel("Lobby");
-        //if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
-        //{
-        //    Debug.Log("Room is Ready");   
-        //    //ShowRoomPanel();
-        //}
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            Debug.Log("Room is Ready");
+            //ShowRoomPanel();
+        }
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
@@ -137,7 +137,7 @@ public class ConnectCrtl : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
-            //PhotonNetwork.LoadLevel("FlappyLevel");
+            PhotonNetwork.LoadLevel("FlappyLevel");
             //ShowRoomPanel();
 
         }
