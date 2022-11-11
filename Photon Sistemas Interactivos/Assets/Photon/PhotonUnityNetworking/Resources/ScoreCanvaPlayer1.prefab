@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 517438117788980137}
   - component: {fileID: 517438117788980140}
   - component: {fileID: 517438117788980143}
-  - component: {fileID: 517438117788980142}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -81,19 +80,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0
---- !u!114 &517438117788980142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 517438117788980136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4c3785dafaecb41beb56bfe5ad5fbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
 --- !u!1 &517438119701668880
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +170,7 @@ GameObject:
   - component: {fileID: 7322674154037454771}
   - component: {fileID: -6933911917924009249}
   - component: {fileID: 187251244933607969}
+  - component: {fileID: 7249262061500548949}
   m_Layer: 5
   m_Name: ScoreCanvaPlayer1
   m_TagString: Untagged
@@ -294,7 +281,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 187251244933607969}
-  - {fileID: 517438117788980142}
+  - {fileID: 7249262061500548949}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -314,3 +301,16 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &7249262061500548949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7322674154037454780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4c3785dafaecb41beb56bfe5ad5fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0

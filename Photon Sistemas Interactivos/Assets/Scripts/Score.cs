@@ -15,16 +15,16 @@ public class Score : MonoBehaviourPun, IPunObservable
         {
             stream.SendNext(score);
         }
-        else
+        else if(stream.IsReading)
         {
             score = (int)stream.ReceiveNext();
         }
     }
 
-    void Start()
+    void Awake()
     {
         score = 0;
-        _text = GetComponent<Text>();
+        _text = GetComponentInChildren<Text>();
     }
 
     void Update()

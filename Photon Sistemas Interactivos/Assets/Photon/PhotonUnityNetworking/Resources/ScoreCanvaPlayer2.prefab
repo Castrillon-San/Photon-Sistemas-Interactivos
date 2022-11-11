@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2075345460665059253}
   - component: {fileID: -2231407841460808787}
   - component: {fileID: 5704708176472353828}
+  - component: {fileID: 4507945214905546790}
   m_Layer: 5
   m_Name: ScoreCanvaPlayer2
   m_TagString: Untagged
@@ -124,6 +125,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5704708176472353828}
+  - {fileID: 4507945214905546790}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -143,6 +145,19 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &4507945214905546790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075345460665059258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4c3785dafaecb41beb56bfe5ad5fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!1 &9114170541600621590
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +245,6 @@ GameObject:
   - component: {fileID: 9114170542909305775}
   - component: {fileID: 9114170542909305770}
   - component: {fileID: 9114170542909305769}
-  - component: {fileID: 9114170542909305768}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -300,16 +314,3 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0
---- !u!114 &9114170542909305768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9114170542909305774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4c3785dafaecb41beb56bfe5ad5fbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0

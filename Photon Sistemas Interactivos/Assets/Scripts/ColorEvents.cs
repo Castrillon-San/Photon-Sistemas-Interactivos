@@ -51,11 +51,11 @@ public class ColorEvents : MonoBehaviourPunCallbacks, IOnEventCallback
     public void ReceiveCustomColor(object[] dataReceive)
     {
         Color _color = ToColor((string)dataReceive[0]);
-        PhotonView[] listPhotonViews = FindObjectsOfType<PhotonView>();
+        FlyBird[] listPhotonViews = FindObjectsOfType<FlyBird>();
         int objectID = (int)dataReceive[1];
         foreach (var item in listPhotonViews)
         {
-            if(item.ViewID == objectID)
+            if(item.GetComponent<PhotonView>().ViewID == objectID)
             {
                item.GetComponent<SpriteRenderer>().color = _color;
             }

@@ -16,12 +16,12 @@ public class FlyBird : MonoBehaviourPunCallbacks
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-        ColorEvents.Instance.SetCustomColor(PhotonNetwork.LocalPlayer.CustomProperties["color"].ToString(), photonView.ViewID);
 
-        //if (photonView.IsMine)
-        //{
-        //    gameObject.GetComponent<SpriteRenderer>().color = PhotonNetwork.LocalPlayer.CustomProperties[]
-        //}
+        if (photonView.IsMine)
+        {
+            ColorEvents.Instance.SetCustomColor(PhotonNetwork.LocalPlayer.CustomProperties["color"].ToString(), photonView.ViewID);
+
+        }
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)

@@ -15,7 +15,7 @@ public class PlayerPersonalization : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        gameObject.GetComponent<TMPro.TMP_Dropdown>().value = 0;
+        gameObject.GetComponent<TMPro.TMP_Dropdown>().value = 1;
     }
 
     public void SelectColor(int index)
