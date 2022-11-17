@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             photonView.RPC("SetWinner", RpcTarget.AllViaServer, winner);
         }
 
-        Time.timeScale = 0;
         gameOverCanvas.SetActive(true);
     }
     public void Replay()
@@ -46,6 +45,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void SetWinner(string text)
     {
         winner.text = text;
+        Time.timeScale = 0;
 
     }
 }
