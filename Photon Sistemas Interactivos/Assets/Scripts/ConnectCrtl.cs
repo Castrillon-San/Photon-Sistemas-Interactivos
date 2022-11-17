@@ -21,16 +21,11 @@ public class ConnectCrtl : MonoBehaviourPunCallbacks
     [SerializeField]
     string regionCode = null;
     [SerializeField]
-    private GameObject PanelConnect;
-    [SerializeField]
-    private GameObject PanelRoom;
-    [SerializeField]
     private Button button;
 
     void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        //PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = RegionCode.AUTO.ToString();
     }
 
     public void SetRegion(int index)
@@ -66,28 +61,9 @@ public class ConnectCrtl : MonoBehaviourPunCallbacks
 
     void SetButton(bool state, string msg)
     {
-        //GameObject.Find("Button").GetComponentInChildren<TMPro.TMP_Text>().text = msg;
-        //GameObject.Find("Button").GetComponent<Button>().enabled = state;
         button.GetComponentInChildren<TMPro.TMP_Text>().text = msg;
         button.GetComponent<Button>().enabled = state;
     }
-
-    void ShowRoomPanel()
-    {
-        PanelConnect.SetActive(false);
-        PanelRoom.SetActive(true);
-    }
-
-    //public void SetColor(int index)
-    //{
-    //    string color = GameObject.Find("DropdownColors").GetComponent<Dropdown>().options[index].text;
-
-    //    Debug.Log("Color: " + color);
-
-    //    var propsToSet = new ExitGames.Client.Photon.Hashtable() { { "color", color } };
-    //    PhotonNetwork.LocalPlayer.SetCustomProperties(propsToSet);
-
-    //}
 
     public void SetReady()
     {
@@ -115,19 +91,15 @@ public class ConnectCrtl : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
 
-        // #Critical: we failed to join a random room, maybe none exists or they are all full. No worries, we create a new room.
         PhotonNetwork.CreateRoom(null, new RoomOptions());
     }
 
     public override void OnJoinedRoom()
     {
-        //Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
-        //SetButton(false, "WAITING PLAYERS");
         PhotonNetwork.LoadLevel("Lobby");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             Debug.Log("Room is Ready");
-            //ShowRoomPanel();
         }
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -138,38 +110,11 @@ public class ConnectCrtl : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("FlappyLevel");
-            //ShowRoomPanel();
 
         }
 
     }
 
-    //public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
-    //{
-    //    if (changedProps.ContainsKey("color"))
-    //    {
-
-    //    }
-    //    if (changedProps.ContainsKey("ready"))
-    //    {
-    //        int playersReady = 0;
-    //        foreach (var player in PhotonNetwork.CurrentRoom.Players.Values) 
-    //        {
-    //            bool ready = (bool)player.CustomProperties["ready"];
-    //            Debug.Log(player.NickName + " is ready? ...." + ready);
-
-    //            if (ready)
-    //            {
-    //                playersReady++;
-    //            }
-
-    //            if(playersReady == PhotonNetwork.CurrentRoom.MaxPlayers)
-    //            {
-    //                PhotonNetwork.LoadLevel("Game");
-    //            }
-    //        }
-    //    }
-    //}
 
 
     #endregion

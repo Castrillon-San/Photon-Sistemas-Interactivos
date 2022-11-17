@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject gameOverCanvas;
     public TMP_Text winner;
 
-    // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
