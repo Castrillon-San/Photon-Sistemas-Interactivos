@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = false;
         base.OnLeftRoom();
         PhotonNetwork.Disconnect();
+    }
+    public override void OnDisconnected(DisconnectCause cause)
+    {
         SceneManager.LoadScene(0);
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
