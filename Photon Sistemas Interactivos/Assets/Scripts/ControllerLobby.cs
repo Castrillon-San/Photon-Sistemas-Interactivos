@@ -54,7 +54,11 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        rivalUsername.text = PhotonNetwork.CurrentRoom.Players[1].NickName;
+        if (PhotonNetwork.CurrentRoom.Players[1] != PhotonNetwork.LocalPlayer)
+        {
+            rivalUsername.gameObject.SetActive(true);
+            rivalUsername.text = PhotonNetwork.CurrentRoom.Players[1].NickName;
+        }
         localUsername.text = PhotonNetwork.LocalPlayer.NickName;
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         SetButton(false, "WAITING PLAYERS");
@@ -85,6 +89,13 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
 
         }
 
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            roomIsOpen.gameObject.SetActive(true);
+            roomIsOpen.text = "Room is Ready";
+        }
     }
 
     public void LoadGameLevel()
