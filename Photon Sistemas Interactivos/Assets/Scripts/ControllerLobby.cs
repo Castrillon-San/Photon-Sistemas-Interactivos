@@ -21,11 +21,7 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
     [SerializeField]
     TMP_Text rivalUsername;
 
-    private void Start()
-    {
-        SetButton(true, "Ready!");
-
-    }
+  
     public void Connect()
     {
         if (PhotonNetwork.IsConnected)
@@ -80,6 +76,7 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
 
     public void LoadGameLevel()
     {
+        PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.LoadLevel("FlappyLevel");
     }
 }
