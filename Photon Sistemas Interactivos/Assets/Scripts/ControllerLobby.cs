@@ -20,7 +20,13 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
 
     [SerializeField]
     TMP_Text rivalUsername;
-  
+    private void Start()
+    {
+        localUsername.text = PhotonNetwork.LocalPlayer.NickName;
+      
+
+        
+    }
 
     public void Connect()
     {
