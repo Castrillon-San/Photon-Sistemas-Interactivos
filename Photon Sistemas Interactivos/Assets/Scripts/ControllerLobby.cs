@@ -54,11 +54,11 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        rivalUsername.text = PhotonNetwork.CurrentRoom.Players[0].NickName;
+        rivalUsername.text = PhotonNetwork.CurrentRoom.Players[1].NickName;
         localUsername.text = PhotonNetwork.LocalPlayer.NickName;
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         SetButton(false, "WAITING PLAYERS");
-        //PhotonNetwork.LoadLevel("Lobby");
+        Debug.Log("PlayerCount:" + PhotonNetwork.CurrentRoom.PlayerCount);
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             PhotonNetwork.CurrentRoom.IsVisible = false;
