@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 public class GameController : MonoBehaviour
@@ -12,6 +13,11 @@ public class GameController : MonoBehaviour
     public static GameObject canvaClone;
     void Start()
     {
+
+        if (!PhotonNetwork.IsConnected)
+        {
+            SceneManager.LoadScene(0);
+        }
         if (playerPrefab == null)
         {
             Debug.LogError("Falta Prefab");

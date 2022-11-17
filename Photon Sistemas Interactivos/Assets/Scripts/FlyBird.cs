@@ -47,11 +47,11 @@ public class FlyBird : MonoBehaviourPunCallbacks
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag=="Player")
+        if (collision.gameObject.tag=="Spikes")
         {
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            gameManager.GameOver();
+
         }
-        gameManager.GameOver();
     }
 
 }

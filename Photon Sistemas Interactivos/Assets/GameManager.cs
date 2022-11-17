@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public GameObject gameOverCanvas;
 
@@ -11,16 +12,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        
     }
 
     public void GameOver()
     {
-        //Debug.Log("GameOver");
-        //gameOverCanvas.SetActive(true);
-        //Time.timeScale = 0;
+        Time.timeScale = 0;
+        gameOverCanvas.SetActive(true);
     }
     public void Replay()
     {
+        Time.timeScale = 1;
+        PhotonNetwork.LeaveRoom();
+    }
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
         SceneManager.LoadScene(0);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class ControllerLobby : MonoBehaviourPunCallbacks
 {
@@ -13,11 +14,24 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private Button button;
+
+    [SerializeField]
+    TMP_Text localUsername;
+
+    [SerializeField]
+    TMP_Text rivalUsername;
+
+    private void Start()
+    {
+        SetButton(true, "Ready!");
+
+    }
     public void Connect()
     {
         if (PhotonNetwork.IsConnected)
         {
             PhotonNetwork.JoinRandomRoom();
+
         }
         else
         {
@@ -34,6 +48,8 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+
+        localUsername.text = PhotonNetwork.LocalPlayer.NickName;
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         SetButton(false, "WAITING PLAYERS");
         //PhotonNetwork.LoadLevel("Lobby");
@@ -45,7 +61,12 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-
+        if(newPlayer!= PhotonNetwork.LocalPlayer)
+        {
+            rivalUsername.gameObject.SetActive(true);
+            rivalUsername.text = newPlayer.NickName;
+        }
+      
         Debug.Log(newPlayer.NickName + " Se Ha unido al cuarto, Players: " + PhotonNetwork.CurrentRoom.PlayerCount);
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
