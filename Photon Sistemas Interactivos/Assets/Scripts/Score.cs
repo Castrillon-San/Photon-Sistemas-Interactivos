@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class Score : MonoBehaviourPun, IPunObservable
 {
     public int score = 0;
-    private Text _text;
+    public Text _text;
+    public Text owner;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -24,9 +25,15 @@ public class Score : MonoBehaviourPun, IPunObservable
     void Awake()
     {
         score = 0;
-        _text = GetComponentInChildren<Text>();
+       
     }
-
+    private void Start()
+    {
+        if (photonView.IsMine)
+        {
+            owner.gameObject.SetActive(true);
+        }
+    }
     void Update()
     {
        _text.text = score.ToString();
