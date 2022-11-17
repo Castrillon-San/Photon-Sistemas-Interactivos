@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using TMPro;
+using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -39,11 +40,18 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
         SceneManager.LoadScene(0);
     }
-
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        PhotonNetwork.AutomaticallySyncScene = false;
+        base.OnLeftRoom();
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene(0);
+    }
 
     [PunRPC]
     public void SetWinner(string text)
     {
+        winner.gameObject.SetActive(true);
         winner.text = text +" es el ganador";
         Time.timeScale = 0;
 
