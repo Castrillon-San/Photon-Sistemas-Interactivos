@@ -26,6 +26,7 @@ public class ConnectCrtl : MonoBehaviourPunCallbacks
     void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = RegionCode.EU.ToString();
     }
 
     public void SetRegion(int index)
