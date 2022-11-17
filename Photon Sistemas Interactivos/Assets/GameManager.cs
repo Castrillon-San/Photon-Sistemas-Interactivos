@@ -27,8 +27,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public override void OnLeftRoom()
     {
-        PhotonNetwork.AutomaticallySyncScene=false;
+        PhotonNetwork.AutomaticallySyncScene = false;
         base.OnLeftRoom();
-        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene(0);
     }
 }
