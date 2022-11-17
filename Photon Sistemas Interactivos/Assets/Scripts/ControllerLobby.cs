@@ -20,12 +20,16 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
 
     [SerializeField]
     TMP_Text rivalUsername;
+
+    [SerializeField]
+    TMP_Text roomIsOpen;
+
     private void Start()
     {
-        localUsername.text = PhotonNetwork.LocalPlayer.NickName;
-      
 
-        
+        localUsername.text = PhotonNetwork.LocalPlayer.NickName;
+
+
     }
 
     public void Connect()
@@ -50,14 +54,17 @@ public class ControllerLobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-
+        rivalUsername.text = PhotonNetwork.CurrentRoom.Players[0].NickName;
         localUsername.text = PhotonNetwork.LocalPlayer.NickName;
         Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
         SetButton(false, "WAITING PLAYERS");
         //PhotonNetwork.LoadLevel("Lobby");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            Debug.Log("Room is Ready");
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            roomIsOpen.gameObject.SetActive(true);
+            roomIsOpen.text="Room is Ready";
             //SetButton(true, "Ready!");
         }
     }
