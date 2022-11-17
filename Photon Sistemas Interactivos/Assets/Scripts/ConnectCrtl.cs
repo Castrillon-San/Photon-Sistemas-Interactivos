@@ -39,7 +39,7 @@ public class ConnectCrtl : MonoBehaviourPunCallbacks
 
         if(region == RegionCode.AUTO)
         {
-            regionCode = null;
+            regionCode = RegionCode.EU.ToString();
         }
         else
         {
