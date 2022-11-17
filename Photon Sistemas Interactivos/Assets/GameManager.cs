@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using TMPro;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public GameObject gameOverCanvas;
+    public TMP_Text winner;
 
     // Start is called before the first frame update
     void Start()
@@ -15,8 +17,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         
     }
 
-    public void GameOver()
+    public void GameOver(GameObject player)
     {
+        if (!player.GetPhotonView().IsMine)
+        {
+            string winner = PhotonNetwork.LocalPlayer.NickName;
+            photonView.RPC("SetWinner", RpcTarget.AllViaServer, winner);
+        }
+
         Time.timeScale = 0;
         gameOverCanvas.SetActive(true);
     }
@@ -31,5 +39,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         base.OnLeftRoom();
         PhotonNetwork.Disconnect();
         SceneManager.LoadScene(0);
+    }
+
+
+    [PunRPC]
+    public void SetWinner(string text)
+    {
+        winner.text = text;
+
     }
 }

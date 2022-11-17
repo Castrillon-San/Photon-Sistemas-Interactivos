@@ -49,9 +49,10 @@ public class FlyBird : MonoBehaviourPunCallbacks
     {
         if (collision.gameObject.tag=="Spikes")
         {
-            gameManager.GameOver();
+            gameManager.GameOver(this.gameObject);
 
         }
     }
+
 
 }
