@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void SetWinner(string text)
     {
-        winner.text = text;
+        winner.text = text +" es el ganador";
         Time.timeScale = 0;
 
     }
